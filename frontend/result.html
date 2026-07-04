@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment Results - Guidance AI</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- AOS Animations -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-theme="dark">
+
+  <!-- Fixed Top Header -->
+  <nav class="navbar navbar-expand-lg glass-navbar fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center text-gradient" href="index.html">
+        <i class="bi bi-cpu-fill me-2"></i>
+        <span>GUIDANCE AI</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation" style="border-color: var(--glass-border);">
+        <span class="bi bi-list text-white" style="font-size: 1.5rem;"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="assessment.html">Career Test</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="resume.html">Resume Scan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="dashboard.html">Dashboard</a>
+          </li>
+          <li class="nav-item ms-lg-2" id="db-status-container"></li>
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <button class="sync-btn" id="nav-sync-btn" data-bs-toggle="modal" data-bs-target="#syncModal">
+              <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+            </button>
+          </li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <button class="theme-switch" id="theme-toggle" aria-label="Toggle theme">
+              <i class="bi bi-sun-fill"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="container" style="padding-top: 120px;" id="result-page-container">
+    
+    <div class="mb-4" data-aos="fade-down">
+      <h1 class="h2 fw-bold text-gradient" id="result-user-title">Excellent work, Candidate!</h1>
+      <p class="text-muted small">Here is your customized career mapping breakdown based on our cognitive scoring metrics.</p>
+    </div>
+
+    <div class="row g-4">
+      
+      <!-- Left Column: Match Results list & salary chart -->
+      <div class="col-lg-8">
+        
+        <!-- Matching list title -->
+        <h3 class="h4 fw-bold mb-4"><i class="bi bi-star-fill text-gradient me-2"></i>Recommended Career Options</h3>
+        <div id="career-matches-list">
+          <!-- Dynamically injected match cards -->
+        </div>
+
+        <!-- Salary projections chart -->
+        <div class="glass-card p-4 mt-4" data-aos="fade-up">
+          <h4 class="h5 fw-bold mb-3"><i class="bi bi-graph-up text-gradient me-2"></i>Financial Insights & Market Projections</h4>
+          <p class="small text-muted mb-4">Compare salary brackets alongside growth trends compiled across current listings.</p>
+          <div style="position: relative; height: 350px; width: 100%;">
+            <canvas id="salaryChart"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Skills gap & Recommended course modules -->
+      <div class="col-lg-4">
+        
+        <!-- Cognitive Scorecard panel -->
+        <div class="glass-card p-4 mb-4" data-aos="fade-left">
+          <h4 class="h5 fw-bold mb-3"><i class="bi bi-brain-fill text-gradient me-2"></i>Cognitive Quiz Performance</h4>
+          <div id="cognitive-scorecard">
+            <!-- Dynamic scorecard stats here -->
+          </div>
+        </div>
+        
+        <!-- Capability Gap assessment panel -->
+        <div class="glass-card p-4 mb-4" data-aos="fade-left" data-aos-delay="50">
+          <h4 class="h5 fw-bold mb-3"><i class="bi bi-grid-fill text-gradient me-2"></i>Capabilities Gap Analysis</h4>
+          <div id="skill-gap-analysis">
+            <!-- Skill comparison charts injected here -->
+          </div>
+        </div>
+
+        <!-- Course modules linking -->
+        <div class="glass-card p-4" data-aos="fade-left" data-aos-delay="100">
+          <h4 class="h5 fw-bold mb-2"><i class="bi bi-mortarboard-fill text-gradient me-2"></i>Suggested Coursework</h4>
+          <p class="small text-muted mb-4">Complete target programs to obtain missing credentials.</p>
+          <div id="suggested-courses">
+            <!-- Course cards injected here -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <div class="mb-4">
+        <a href="#" class="footer-social-icon me-3"><i class="bi bi-github"></i></a>
+        <a href="#" class="footer-social-icon me-3"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="footer-social-icon"><i class="bi bi-twitter-x"></i></a>
+      </div>
+      <p class="small text-muted mb-0">© 2026 Guidance AI System by SPACE_AI.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Chatbot Toggle Bubble -->
+  <div class="chatbot-bubble" id="chatbot-bubble" aria-label="Open chatbot">
+    <i class="bi bi-chat-square-text-fill"></i>
+  </div>
+
+  <!-- Chatbot Dialog Drawer -->
+  <div class="glass-card chatbot-dialog" id="chatbot-dialog">
+    <div class="chatbot-header">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-robot me-2"></i>
+        <span>AI Counselor</span>
+      </div>
+      <button type="button" class="btn-close btn-close-white" id="chatbot-close" aria-label="Close"></button>
+    </div>
+    <div class="chatbot-body d-flex flex-column" id="chatbot-body"></div>
+    <div class="chatbot-footer">
+      <input type="text" class="form-control glass-input flex-grow-1" id="chatbot-input" placeholder="Type career query...">
+      <button class="btn btn-cyber p-2 px-3" id="chatbot-send"><i class="bi bi-send-fill"></i></button>
+    </div>
+  </div>
+
+  <!-- Chart.js and Custom Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Guidance AI</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- AOS Animations -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-theme="dark">
+
+  <!-- Fixed Top Header -->
+  <nav class="navbar navbar-expand-lg glass-navbar fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center text-gradient" href="index.html">
+        <i class="bi bi-cpu-fill me-2"></i>
+        <span>GUIDANCE AI</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation" style="border-color: var(--glass-border);">
+        <span class="bi bi-list text-white" style="font-size: 1.5rem;"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="assessment.html">Career Test</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="resume.html">Resume Scan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html">Dashboard</a>
+          </li>
+          <li class="nav-item ms-lg-2" id="db-status-container"></li>
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <button class="sync-btn" id="nav-sync-btn" data-bs-toggle="modal" data-bs-target="#syncModal">
+              <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+            </button>
+          </li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <button class="theme-switch" id="theme-toggle" aria-label="Toggle theme">
+              <i class="bi bi-sun-fill"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Admin Main Control Workspace Container -->
+  <main class="container" style="padding-top: 120px;" id="admin-page-container">
+    
+    <div class="mb-4" data-aos="fade-down">
+      <h1 class="h2 fw-bold text-gradient"><i class="bi bi-shield-lock-fill me-2"></i>Administration Console</h1>
+      <p class="text-muted small">Overview metrics, registered students, test submissions, resume scan stats and chatbot histories.</p>
+    </div>
+
+    <!-- Metrics Cards Grid -->
+    <div class="row g-3 mb-4" data-aos="fade-up">
+      <div class="col-md-3">
+        <div class="glass-card p-3 d-flex justify-content-between align-items-center">
+          <div>
+            <span class="small text-muted d-block">Registered Students</span>
+            <span class="h3 fw-bold text-white mb-0" id="stat-users">0</span>
+          </div>
+          <i class="bi bi-people-fill text-gradient" style="font-size: 2rem;"></i>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="glass-card p-3 d-flex justify-content-between align-items-center">
+          <div>
+            <span class="small text-muted d-block">Assessments Logged</span>
+            <span class="h3 fw-bold text-white mb-0" id="stat-assessments">0</span>
+          </div>
+          <i class="bi bi-file-earmark-bar-graph text-gradient" style="font-size: 2rem;"></i>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="glass-card p-3 d-flex justify-content-between align-items-center">
+          <div>
+            <span class="small text-muted d-block">Resumes Parsed</span>
+            <span class="h3 fw-bold text-white mb-0" id="stat-resumes">0</span>
+          </div>
+          <i class="bi bi-file-earmark-pdf text-gradient" style="font-size: 2rem;"></i>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="glass-card p-3 d-flex justify-content-between align-items-center">
+          <div>
+            <span class="small text-muted d-block">Chat Queries</span>
+            <span class="h3 fw-bold text-white mb-0" id="stat-chats">0</span>
+          </div>
+          <i class="bi bi-chat-dots-fill text-gradient" style="font-size: 2rem;"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Administrative Tabbed Logs Grid -->
+    <div class="glass-card p-4" data-aos="fade-up" data-aos-delay="100">
+      
+      <!-- Nav Tabs -->
+      <ul class="nav nav-tabs border-bottom border-secondary border-opacity-10 mb-4" id="adminTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active py-2 px-3 border-0 bg-transparent fw-bold" id="users-tab" data-bs-toggle="tab" data-bs-target="#users-panel" type="button" role="tab" aria-controls="users-panel" aria-selected="true">
+            <i class="bi bi-people-fill me-1"></i> Students Directory
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link py-2 px-3 border-0 bg-transparent fw-bold" id="assessments-tab" data-bs-toggle="tab" data-bs-target="#assessments-panel" type="button" role="tab" aria-controls="assessments-panel" aria-selected="false">
+            <i class="bi bi-file-earmark-bar-graph-fill me-1"></i> Assessments Log
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link py-2 px-3 border-0 bg-transparent fw-bold" id="resumes-tab" data-bs-toggle="tab" data-bs-target="#resumes-panel" type="button" role="tab" aria-controls="resumes-panel" aria-selected="false">
+            <i class="bi bi-file-earmark-pdf-fill me-1"></i> Resumes Scanned
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link py-2 px-3 border-0 bg-transparent fw-bold" id="chats-tab" data-bs-toggle="tab" data-bs-target="#chats-panel" type="button" role="tab" aria-controls="chats-panel" aria-selected="false">
+            <i class="bi bi-chat-left-text-fill me-1"></i> Chat History
+          </button>
+        </li>
+      </ul>
+
+      <!-- Tab Content Panels -->
+      <div class="tab-content" id="adminTabContent">
+        
+        <!-- STUDENTS DIRECTORY PANEL -->
+        <div class="tab-pane fade show active" id="users-panel" role="tabpanel" aria-labelledby="users-tab">
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle border-secondary border-opacity-10 mb-0" style="--bs-table-bg: transparent; --bs-table-hover-bg: var(--card-bg-hover); color: var(--text-color);">
+              <thead>
+                <tr class="border-bottom border-secondary border-opacity-10 text-muted small">
+                  <th scope="col" class="py-3">Full Name</th>
+                  <th scope="col">Email Address</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Academic standing (GPA)</th>
+                  <th scope="col">Access Role</th>
+                  <th scope="col">Created Date</th>
+                  <th scope="col" class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-table">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ASSESSMENTS LOG PANEL -->
+        <div class="tab-pane fade" id="assessments-panel" role="tabpanel" aria-labelledby="assessments-tab">
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle border-secondary border-opacity-10 mb-0" style="--bs-table-bg: transparent; --bs-table-hover-bg: var(--card-bg-hover); color: var(--text-color);">
+              <thead>
+                <tr class="border-bottom border-secondary border-opacity-10 text-muted small">
+                  <th scope="col" class="py-3">Student Email</th>
+                  <th scope="col">Completed Date</th>
+                  <th scope="col">Skill strengths (1-5)</th>
+                  <th scope="col">Chosen Interests</th>
+                  <th scope="col">Top Career Recommendation</th>
+                </tr>
+              </thead>
+              <tbody id="admin-assessments-table">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- RESUMES SCANNED PANEL -->
+        <div class="tab-pane fade" id="resumes-panel" role="tabpanel" aria-labelledby="resumes-tab">
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle border-secondary border-opacity-10 mb-0" style="--bs-table-bg: transparent; --bs-table-hover-bg: var(--card-bg-hover); color: var(--text-color);">
+              <thead>
+                <tr class="border-bottom border-secondary border-opacity-10 text-muted small">
+                  <th scope="col" class="py-3">Student Email</th>
+                  <th scope="col">Uploaded Resume Filename</th>
+                  <th scope="col">ATS Keywords Score</th>
+                  <th scope="col">Scanned Date</th>
+                </tr>
+              </thead>
+              <tbody id="admin-resumes-table">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- CHAT TRANSCRIPTS LOG PANEL -->
+        <div class="tab-pane fade" id="chats-panel" role="tabpanel" aria-labelledby="chats-tab">
+          <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+            <table class="table table-dark table-hover align-middle border-secondary border-opacity-10 mb-0" style="--bs-table-bg: transparent; --bs-table-hover-bg: var(--card-bg-hover); color: var(--text-color);">
+              <thead>
+                <tr class="border-bottom border-secondary border-opacity-10 text-muted small">
+                  <th scope="col" class="py-3">Student Email</th>
+                  <th scope="col">Sender</th>
+                  <th scope="col">Message Statement</th>
+                  <th scope="col">Logged Date</th>
+                </tr>
+              </thead>
+              <tbody id="admin-chats-table">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <div class="mb-4">
+        <a href="#" class="footer-social-icon me-3"><i class="bi bi-github"></i></a>
+        <a href="#" class="footer-social-icon me-3"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="footer-social-icon"><i class="bi bi-twitter-x"></i></a>
+      </div>
+      <p class="small text-muted mb-0">© 2026 Guidance AI System by SPACE_AI.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Chatbot Toggle Bubble -->
+  <div class="chatbot-bubble" id="chatbot-bubble" aria-label="Open chatbot">
+    <i class="bi bi-chat-square-text-fill"></i>
+  </div>
+
+  <!-- Chatbot Dialog Drawer -->
+  <div class="glass-card chatbot-dialog" id="chatbot-dialog">
+    <div class="chatbot-header">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-robot me-2"></i>
+        <span>AI Counselor</span>
+      </div>
+      <button type="button" class="btn-close btn-close-white" id="chatbot-close" aria-label="Close"></button>
+    </div>
+    <div class="chatbot-body d-flex flex-column" id="chatbot-body"></div>
+    <div class="chatbot-footer">
+      <input type="text" class="form-control glass-input flex-grow-1" id="chatbot-input" placeholder="Type career query...">
+      <button class="btn btn-cyber p-2 px-3" id="chatbot-send"><i class="bi bi-send-fill"></i></button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

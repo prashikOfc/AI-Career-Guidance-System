@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guidance AI - Find Your Perfect Career Path with AI</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- AOS Animations -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body data-theme="dark">
+
+  <!-- Fixed Top Header -->
+  <nav class="navbar navbar-expand-lg glass-navbar fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center text-gradient" href="index.html">
+        <i class="bi bi-cpu-fill me-2"></i>
+        <span>GUIDANCE AI</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation"
+        style="border-color: var(--glass-border);">
+        <span class="bi bi-list text-white" style="font-size: 1.5rem;"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="assessment.html">Career Test</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="resume.html">Resume Scan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html">Dashboard</a>
+          </li>
+          <li class="nav-item ms-lg-2" id="db-status-container"></li>
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <button class="sync-btn" id="nav-sync-btn" data-bs-toggle="modal" data-bs-target="#syncModal">
+              <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+            </button>
+          </li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <button class="theme-switch" id="theme-toggle" aria-label="Toggle theme">
+              <i class="bi bi-sun-fill"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-sec d-flex align-items-center min-vh-100">
+    <div class="floating-mesh"></div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+          <h1 class="display-3 fw-bold mb-3 lh-sm text-gradient">
+            Find Your Perfect <br>Career with AI
+          </h1>
+          <p class="lead text-muted mb-4 fs-5" style="max-width: 550px;">
+            Empower your future with intelligent career assessments, skill gap mapping, tailored course recommendations,
+            and ATS resume scanning.
+          </p>
+          <div class="d-flex flex-column flex-sm-row gap-3">
+            <a href="assessment.html" class="btn btn-cyber py-3 px-4">
+              Get Started <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+            <a href="assessment.html" class="btn btn-cyber-purple py-3 px-4">
+              Take Career Test <i class="bi bi-vial-fill ms-2"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6 hero-visual text-center" data-aos="fade-left">
+          <!-- Clean Classic Modern Tech SVG illustration -->
+          <div class="interactive-visual-wrapper">
+            <div class="ai-glow-backing"></div>
+            <!-- Connection SVG Lines -->
+            <svg class="visual-connections" viewBox="0 0 500 500">
+              <!-- Background static lines -->
+              <path d="M 250 250 L 110 105" class="conn-line" />
+              <path d="M 250 250 L 390 105" class="conn-line" />
+              <path d="M 250 250 L 110 395" class="conn-line" />
+              <path d="M 250 250 L 390 395" class="conn-line" />
+
+              <!-- Flowing pulsing glow lines -->
+              <path d="M 250 250 L 110 105" class="conn-line conn-pulse conn-pulse-1" />
+              <path d="M 250 250 L 390 105" class="conn-line conn-pulse conn-pulse-2" />
+              <path d="M 250 250 L 110 395" class="conn-line conn-pulse conn-pulse-3" />
+              <path d="M 250 250 L 390 395" class="conn-line conn-pulse conn-pulse-4" />
+            </svg>
+            <!-- Central Pulsing Core -->
+            <div class="visual-core">
+              <div class="core-orbit ring-1"></div>
+              <div class="core-orbit ring-2"></div>
+              <div class="core-hub">
+                <i class="bi bi-cpu-fill"></i>
+                <div class="hub-label">AI CORE</div>
+              </div>
+            </div>
+            <!-- Floating Node Cards -->
+            <div class="node-card badge-skills" data-aos="zoom-in" data-aos-delay="200">
+              <div class="node-icon"><i class="bi bi-award-fill"></i></div>
+              <div class="node-info">
+                <div class="node-title">Capabilities</div>
+                <div class="node-desc">8 Dimensions Mapped</div>
+              </div>
+            </div>
+            <div class="node-card badge-career" data-aos="zoom-in" data-aos-delay="300">
+              <div class="node-icon"><i class="bi bi-briefcase-fill"></i></div>
+              <div class="node-info">
+                <div class="node-title">Career Match</div>
+                <div class="node-desc">98.4% Accuracy</div>
+              </div>
+            </div>
+            <div class="node-card badge-ats" data-aos="zoom-in" data-aos-delay="400">
+              <div class="node-icon"><i class="bi bi-file-earmark-diff-fill"></i></div>
+              <div class="node-info">
+                <div class="node-title">ATS Optimizer</div>
+                <div class="node-desc">Keywords Restructured</div>
+              </div>
+            </div>
+            <div class="node-card badge-courses" data-aos="zoom-in" data-aos-delay="500">
+              <div class="node-icon"><i class="bi bi-journal-bookmark-fill"></i></div>
+              <div class="node-info">
+                <div class="node-title">Roadmaps</div>
+                <div class="node-desc">Coursera & Udemy linked</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview Section -->
+  <section class="py-5 my-5">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="display-5 fw-bold mb-3">How <span class="text-gradient">Guidance AI</span> Works</h2>
+        <p class="text-muted mx-auto" style="max-width: 600px;">Our platform uses advanced cognitive mappings to
+          evaluate individual capabilities against standard market requirements.</p>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="glass-card p-4 text-center h-100">
+            <div class="mb-4">
+              <i class="bi bi-person-lines-fill text-gradient display-5"></i>
+            </div>
+            <h3 class="h4 mb-3">1. Multi-Step Quiz</h3>
+            <p class="text-muted small">Answer questions focusing on academic fields, skills competence ratings, and
+              core career values.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="glass-card p-4 text-center h-100">
+            <div class="mb-4">
+              <i class="bi bi-graph-up-arrow text-gradient display-5"></i>
+            </div>
+            <h3 class="h4 mb-3">2. Gap Matrix</h3>
+            <p class="text-muted small">Contrast your competencies with target job requirements, identifying structural
+              voids and coursework needs.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="glass-card p-4 text-center h-100">
+            <div class="mb-4">
+              <i class="bi bi-file-earmark-check-fill text-gradient display-5"></i>
+            </div>
+            <h3 class="h4 mb-3">3. Resume Optimization</h3>
+            <p class="text-muted small">Input current resume docs to evaluate ATS keywords scores and trigger immediate
+              format refinements.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid Section -->
+  <section class="py-5 ">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="display-5 fw-bold mb-3">Complete <span class="text-gradient">Feature Suite</span></h2>
+        <p class="text-muted">Explore modules engineered to design your future career.</p>
+      </div>
+      <div class="row g-4">
+        <!-- Feature 1 -->
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+          <div class="glass-card p-4 h-100">
+            <i class="bi bi-award text-gradient fs-1 d-block mb-3"></i>
+            <h4 class="h5 mb-2">AI Career Recommendation</h4>
+            <p class="text-muted small mb-0">Computes percentage compatibility metrics by matching personality
+              parameters with tech, scientific, and artistic databases.</p>
+          </div>
+        </div>
+        <!-- Feature 2 -->
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+          <div class="glass-card p-4 h-100">
+            <i class="bi bi-vial-fill text-gradient fs-1 d-block mb-3"></i>
+            <h4 class="h5 mb-2">Skill Assessment Test</h4>
+            <p class="text-muted small mb-0">Evaluate capabilities across logic models, design systems, copywriting,
+              data and analytics, and presentation tags.</p>
+          </div>
+        </div>
+        <!-- Feature 3 -->
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+          <div class="glass-card p-4 h-100">
+            <i class="bi bi-file-earmark-diff text-gradient fs-1 d-block mb-3"></i>
+            <h4 class="h5 mb-2">Resume Analyzer</h4>
+            <p class="text-muted small mb-0">Analyzes resume compatibility score, extracting parsed capabilities, and
+              suggesting missing critical keywords.</p>
+          </div>
+        </div>
+        <!-- Feature 4 -->
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="400">
+          <div class="glass-card p-4 h-100">
+            <i class="bi bi-signpost-split text-gradient fs-1 d-block mb-3"></i>
+            <h4 class="h5 mb-2">Learning Roadmap</h4>
+            <p class="text-muted small mb-0">Curates structured timeline nodes linking back to industry certifications
+              (Coursera, Udemy, edX) for skills training.</p>
+          </div>
+        </div>
+        <!-- Feature 5 -->
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="500">
+          <div class="glass-card p-4 h-100">
+            <i class="bi bi-briefcase text-gradient fs-1 d-block mb-3"></i>
+            <h4 class="h5 mb-2">Job Suggestions</h4>
+            <p class="text-muted small mb-0">Displays real-time growth indicators, employment projections, and annual
+              salary brackets.</p>
+          </div>
+        </div>
+        <!-- Feature 6 -->
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="600">
+          <div class="glass-card p-4 h-100">
+            <i class="bi bi-chat-dots text-gradient fs-1 d-block mb-3"></i>
+            <h4 class="h5 mb-2">Career Chatbot</h4>
+            <p class="text-muted small mb-0">Ask general career paths questions and receive responsive inputs
+              immediately.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <div class="mb-4">
+        <a href="#" class="footer-social-icon me-3"><i class="bi bi-github"></i></a>
+        <a href="#" class="footer-social-icon me-3"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="footer-social-icon"><i class="bi bi-twitter-x"></i></a>
+      </div>
+      <p class="small text-muted mb-0">© 2026 Guidance AI System by SPACE_AI.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Chatbot Toggle Bubble -->
+  <div class="chatbot-bubble" id="chatbot-bubble" aria-label="Open chatbot">
+    <i class="bi bi-chat-square-text-fill"></i>
+  </div>
+
+  <!-- Chatbot Dialog Drawer -->
+  <div class="glass-card chatbot-dialog" id="chatbot-dialog">
+    <div class="chatbot-header">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-robot me-2"></i>
+        <span>AI Counselor</span>
+      </div>
+      <button type="button" class="btn-close btn-close-white" id="chatbot-close" aria-label="Close"></button>
+    </div>
+    <div class="chatbot-body d-flex flex-column" id="chatbot-body">
+      <!-- Chat history injected dynamically -->
+    </div>
+    <div class="chatbot-footer">
+      <input type="text" class="form-control glass-input flex-grow-1" id="chatbot-input"
+        placeholder="Type career query...">
+      <button class="btn btn-cyber p-2 px-3" id="chatbot-send"><i class="bi bi-send-fill"></i></button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

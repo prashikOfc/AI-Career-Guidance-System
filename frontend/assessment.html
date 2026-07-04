@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Assessment - Guidance AI</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- AOS Animations -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-theme="dark">
+
+  <!-- Fixed Top Header -->
+  <nav class="navbar navbar-expand-lg glass-navbar fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center text-gradient" href="index.html">
+        <i class="bi bi-cpu-fill me-2"></i>
+        <span>GUIDANCE AI</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation" style="border-color: var(--glass-border);">
+        <span class="bi bi-list text-white" style="font-size: 1.5rem;"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="assessment.html">Career Test</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="resume.html">Resume Scan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html">Dashboard</a>
+          </li>
+          <li class="nav-item ms-lg-2" id="db-status-container"></li>
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <button class="sync-btn" id="nav-sync-btn" data-bs-toggle="modal" data-bs-target="#syncModal">
+              <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+            </button>
+          </li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <button class="theme-switch" id="theme-toggle" aria-label="Toggle theme">
+              <i class="bi bi-sun-fill"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Stepper Layout Container -->
+  <main class="container" style="padding-top: 120px; max-width: 800px;">
+    
+    <div class="text-center mb-4" data-aos="fade-down">
+      <h1 class="h2 fw-bold text-gradient">AI Career Evaluation</h1>
+      <p class="text-muted small">Complete the questionnaire below to calibrate matching pathways.</p>
+    </div>
+
+    <div class="glass-card p-4 p-md-5" data-aos="fade-up">
+      <!-- Step Indicator Header -->
+      <div class="step-indicator-wrapper">
+        <div class="step-indicator-line">
+          <div class="step-indicator-progress" id="wizard-progress-bar"></div>
+        </div>
+        <div class="step-bubbles-container">
+          <div class="step-bubble active">1</div>
+          <div class="step-bubble">2</div>
+          <div class="step-bubble">3</div>
+          <div class="step-bubble">4</div>
+          <div class="step-bubble">5</div>
+          <div class="step-bubble">6</div>
+        </div>
+      </div>
+
+      <form id="assessment-form" novalidate>
+        
+        <!-- STEP 1: PERSONAL DETAILS -->
+        <div class="wizard-step active">
+          <h4 class="mb-3 text-gradient">Step 1: Personal Details</h4>
+          <p class="text-muted small mb-4">Please submit your primary details to establish your profile.</p>
+          <div class="mb-3">
+            <label for="stud-name" class="form-label small text-muted">Full Name</label>
+            <input type="text" class="form-control glass-input" id="stud-name" required placeholder="e.g. Jane Doe">
+          </div>
+          <div class="mb-3">
+            <label for="stud-email" class="form-label small text-muted">Email Address</label>
+            <input type="email" class="form-control glass-input" id="stud-email" required placeholder="e.g. jane@example.com">
+          </div>
+          <div class="mb-3">
+            <label for="stud-age" class="form-label small text-muted">Age</label>
+            <input type="number" class="form-control glass-input" id="stud-age" required min="10" max="99" placeholder="e.g. 21">
+          </div>
+        </div>
+
+        <!-- STEP 2: EDUCATION DETAILS -->
+        <div class="wizard-step">
+          <h4 class="mb-3 text-gradient">Step 2: Educational Level</h4>
+          <p class="text-muted small mb-4">Choose your active academic standing credentials.</p>
+          <div class="row g-3 mb-4">
+            <div class="col-sm-6">
+              <div class="selector-card" data-val="High School" data-type="degree">
+                <i class="bi bi-book-half"></i>
+                <h5 class="h6 mb-0 text-white">High School</h5>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="selector-card" data-val="Bachelor's" data-type="degree">
+                <i class="bi bi-mortarboard-fill"></i>
+                <h5 class="h6 mb-0 text-white">Bachelor's Degree</h5>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="selector-card" data-val="Master's" data-type="degree">
+                <i class="bi bi-journal-bookmark-fill"></i>
+                <h5 class="h6 mb-0 text-white">Master's Degree</h5>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="selector-card" data-val="Doctorate" data-type="degree">
+                <i class="bi bi-academic-honor"></i>
+                <h5 class="h6 mb-0 text-white">PhD / Doctorate</h5>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="stud-gpa" class="form-label small text-muted">GPA / Grade Percentage</label>
+            <input type="text" class="form-control glass-input" id="stud-gpa" required placeholder="e.g. 3.8/4.0 or 85%">
+          </div>
+        </div>
+
+        <!-- STEP 3: SKILL & COGNITIVE QUIZ -->
+        <div class="wizard-step">
+          <h4 class="mb-3 text-gradient">Step 3: Skill & Cognitive Quiz</h4>
+          <p class="text-muted small mb-4 font-size-xs">Answer the multiple-choice questions below to evaluate your communication, aptitude, and reasoning skills.</p>
+          
+          <!-- Communication Section -->
+          <div class="mb-4">
+            <div class="d-flex align-items-center mb-3">
+              <i class="bi bi-chat-left-dots-fill me-2 text-primary" style="font-size: 1.25rem;"></i>
+              <h6 class="text-white mb-0">Section A: Communication Skills</h6>
+            </div>
+            
+            <div class="mb-4">
+              <p class="small text-muted mb-2 fw-semibold">Q1. A team member is consistently missing deadlines, affecting your work. How do you handle this?</p>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="comm-q1" id="comm-q1-a" value="a" required>
+                <label class="form-check-label" for="comm-q1-a">Complain to the manager immediately.</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="comm-q1" id="comm-q1-b" value="b">
+                <label class="form-check-label" for="comm-q1-b">Discuss it privately with them, seek to understand the bottleneck, and offer help.</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="comm-q1" id="comm-q1-c" value="c">
+                <label class="form-check-label" for="comm-q1-c">Ignore it and work overtime to cover for them.</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="comm-q1" id="comm-q1-d" value="d">
+                <label class="form-check-label" for="comm-q1-d">Confront them publicly in the next group meeting.</label>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <p class="small text-muted mb-2 fw-semibold">Q2. You receive negative feedback on a project you spent weeks working on. What is your reaction?</p>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="comm-q2" id="comm-q2-a" value="a" required>
+                <label class="form-check-label" for="comm-q2-a">Become defensive and explain why they are wrong.</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="comm-q2" id="comm-q2-b" value="b">
+                <label class="form-check-label" for="comm-q2-b">Listen actively, ask clarifying questions, and use it as a learning opportunity.</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="comm-q2" id="comm-q2-c" value="c">
+                <label class="form-check-label" for="comm-q2-c">Accept it politely but disregard it in future tasks.</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="comm-q2" id="comm-q2-d" value="d">
+                <label class="form-check-label" for="comm-q2-d">Complain to others about the unfair review.</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Aptitude Section -->
+          <div class="mb-4 pt-2 border-top border-secondary-subtle">
+            <div class="d-flex align-items-center mb-3 mt-2">
+              <i class="bi bi-lightbulb-fill me-2 text-warning" style="font-size: 1.25rem;"></i>
+              <h6 class="text-white mb-0">Section B: Logical Aptitude</h6>
+            </div>
+            
+            <div class="mb-4">
+              <p class="small text-muted mb-2 fw-semibold">Q3. Complete the series: 3, 5, 9, 17, 33, ?</p>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="apt-q1" id="apt-q1-a" value="a" required>
+                <label class="form-check-label" for="apt-q1-a">49</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="apt-q1" id="apt-q1-b" value="b">
+                <label class="form-check-label" for="apt-q1-b">55</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="apt-q1" id="apt-q1-c" value="c">
+                <label class="form-check-label" for="apt-q1-c">65</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="apt-q1" id="apt-q1-d" value="d">
+                <label class="form-check-label" for="apt-q1-d">60</label>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <p class="small text-muted mb-2 fw-semibold">Q4. Which word does NOT belong with the others?</p>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="apt-q2" id="apt-q2-a" value="a" required>
+                <label class="form-check-label" for="apt-q2-a">Violin</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="apt-q2" id="apt-q2-b" value="b">
+                <label class="form-check-label" for="apt-q2-b">Cello</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="apt-q2" id="apt-q2-c" value="c">
+                <label class="form-check-label" for="apt-q2-c">Flute</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="apt-q2" id="apt-q2-d" value="d">
+                <label class="form-check-label" for="apt-q2-d">Viola</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- IQ Section -->
+          <div class="mb-4 pt-2 border-top border-secondary-subtle">
+            <div class="d-flex align-items-center mb-3 mt-2">
+              <i class="bi bi-brain-fill me-2 text-info" style="font-size: 1.25rem;"></i>
+              <h6 class="text-white mb-0">Section C: Basic IQ</h6>
+            </div>
+            
+            <div class="mb-4">
+              <p class="small text-muted mb-2 fw-semibold">Q5. If 5 machines take 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets?</p>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="iq-q1" id="iq-q1-a" value="a" required>
+                <label class="form-check-label" for="iq-q1-a">100 minutes</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="iq-q1" id="iq-q1-b" value="b">
+                <label class="form-check-label" for="iq-q1-b">20 minutes</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="iq-q1" id="iq-q1-c" value="c">
+                <label class="form-check-label" for="iq-q1-c">5 minutes</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="iq-q1" id="iq-q1-d" value="d">
+                <label class="form-check-label" for="iq-q1-d">1 minute</label>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <p class="small text-muted mb-2 fw-semibold">Q6. Some months have 30 days, some have 31. How many have 28?</p>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="iq-q2" id="iq-q2-a" value="a" required>
+                <label class="form-check-label" for="iq-q2-a">1</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="iq-q2" id="iq-q2-b" value="b">
+                <label class="form-check-label" for="iq-q2-b">12</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="iq-q2" id="iq-q2-c" value="c">
+                <label class="form-check-label" for="iq-q2-c">6</label>
+              </div>
+              <div class="form-check mcq-option-wrapper">
+                <input class="form-check-input" type="radio" name="iq-q2" id="iq-q2-d" value="d">
+                <label class="form-check-label" for="iq-q2-d">2</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: SKILLS COMPETENCY -->
+        <div class="wizard-step">
+          <h4 class="mb-3 text-gradient">Step 4: Evaluate Skill Strengths</h4>
+          <p class="text-muted small mb-4">Self-evaluate your competence level from 1 (Novice) to 5 (Expert).</p>
+          
+          <div class="glass-card skills-card mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="fw-bold">Coding / Logic</span>
+              <span class="text-gradient fw-bold" id="val-skill-coding">3/5</span>
+            </div>
+            <input type="range" class="custom-slider" min="1" max="5" value="3" id="skill-coding">
+          </div>
+
+          <div class="glass-card skills-card mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="fw-bold">Visual Aesthetics & UI Design</span>
+              <span class="text-gradient fw-bold" id="val-skill-design">3/5</span>
+            </div>
+            <input type="range" class="custom-slider" min="1" max="5" value="3" id="skill-design">
+          </div>
+
+          <div class="glass-card skills-card mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="fw-bold">Technical Writing / Copywriting</span>
+              <span class="text-gradient fw-bold" id="val-skill-writing">3/5</span>
+            </div>
+            <input type="range" class="custom-slider" min="1" max="5" value="3" id="skill-writing">
+          </div>
+
+          <div class="glass-card skills-card mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="fw-bold">Analytical Modeling & Math</span>
+              <span class="text-gradient fw-bold" id="val-skill-analysis">3/5</span>
+            </div>
+            <input type="range" class="custom-slider" min="1" max="5" value="3" id="skill-analysis">
+          </div>
+
+          <div class="glass-card skills-card mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="fw-bold">Public Speaking & Presentation</span>
+              <span class="text-gradient fw-bold" id="val-skill-speaking">3/5</span>
+            </div>
+            <input type="range" class="custom-slider" min="1" max="5" value="3" id="skill-speaking">
+          </div>
+        </div>
+
+        <!-- STEP 5: INTEREST FOCUS -->
+        <div class="wizard-step">
+          <h4 class="mb-3 text-gradient">Step 5: Interest Focus Areas</h4>
+          <p class="text-muted small mb-4">Select the domains that genuinely trigger your curiosity (Select at least 1).</p>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="selector-card" data-val="tech" data-type="interest">
+                <i class="bi bi-laptop"></i>
+                <h5 class="h6 mb-2 text-white">Technology</h5>
+                <p class="small text-muted mb-0">Computers, coding, and networking.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="selector-card" data-val="arts" data-type="interest">
+                <i class="bi bi-palette"></i>
+                <h5 class="h6 mb-2 text-white">Creative Arts & Design</h5>
+                <p class="small text-muted mb-0">Visual structures, UI UX, and styling.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="selector-card" data-val="business" data-type="interest">
+                <i class="bi bi-briefcase"></i>
+                <h5 class="h6 mb-2 text-white">Business & Ad Campaigns</h5>
+                <p class="small text-muted mb-0">Products management and marketing.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="selector-card" data-val="science" data-type="interest">
+                <i class="bi bi-bezier2"></i>
+                <h5 class="h6 mb-2 text-white">Science & Data Modeling</h5>
+                <p class="small text-muted mb-0">R&D and data analysis methodologies.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 6: CAREER GOALS -->
+        <div class="wizard-step">
+          <h4 class="mb-3 text-gradient">Step 6: Career Goals</h4>
+          <p class="text-muted small mb-4">Choose your target workspaces formats (Select at least 1).</p>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="selector-card" data-val="freelance" data-type="goal">
+                <i class="bi bi-globe"></i>
+                <h5 class="h6 mb-2 text-white">Freelancing & Independence</h5>
+                <p class="small text-muted mb-0">Remote contracts and digital nomad hubs.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="selector-card" data-val="corporate" data-type="goal">
+                <i class="bi bi-buildings"></i>
+                <h5 class="h6 mb-2 text-white">Corporate Enterprise</h5>
+                <p class="small text-muted mb-0">Stable tracks with cross-functional structures.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="selector-card" data-val="startup" data-type="goal">
+                <i class="bi bi-rocket-takeoff"></i>
+                <h5 class="h6 mb-2 text-white">Startup Venture</h5>
+                <p class="small text-muted mb-0">Fast innovation speeds and equity stakes.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="selector-card" data-val="research" data-type="goal">
+                <i class="bi bi-mortarboard"></i>
+                <h5 class="h6 mb-2 text-white">Research & Academia</h5>
+                <p class="small text-muted mb-0">Theoretical development and education tracks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="d-flex justify-content-between mt-5 pt-3 border-top border-secondary">
+          <button type="button" class="btn btn-cyber-purple py-2 px-4" id="btn-prev" disabled>Back</button>
+          <button type="button" class="btn btn-cyber py-2 px-4" id="btn-next" disabled>Next</button>
+        </div>
+
+      </form>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <div class="mb-4">
+        <a href="#" class="footer-social-icon me-3"><i class="bi bi-github"></i></a>
+        <a href="#" class="footer-social-icon me-3"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="footer-social-icon"><i class="bi bi-twitter-x"></i></a>
+      </div>
+      <p class="small text-muted mb-0">© 2026 Guidance AI System by SPACE_AI.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Chatbot Toggle Bubble -->
+  <div class="chatbot-bubble" id="chatbot-bubble" aria-label="Open chatbot">
+    <i class="bi bi-chat-square-text-fill"></i>
+  </div>
+
+  <!-- Chatbot Dialog Drawer -->
+  <div class="glass-card chatbot-dialog" id="chatbot-dialog">
+    <div class="chatbot-header">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-robot me-2"></i>
+        <span>AI Counselor</span>
+      </div>
+      <button type="button" class="btn-close btn-close-white" id="chatbot-close" aria-label="Close"></button>
+    </div>
+    <div class="chatbot-body d-flex flex-column" id="chatbot-body"></div>
+    <div class="chatbot-footer">
+      <input type="text" class="form-control glass-input flex-grow-1" id="chatbot-input" placeholder="Type career query...">
+      <button class="btn btn-cyber p-2 px-3" id="chatbot-send"><i class="bi bi-send-fill"></i></button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
